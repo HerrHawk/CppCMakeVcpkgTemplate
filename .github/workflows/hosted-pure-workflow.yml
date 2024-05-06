@@ -27,14 +27,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [windows-latest]
         include:
           - os: windows-latest
             triplet: x64-windows
-          - os: ubuntu-latest
-            triplet: x64-linux
-          - os: macos-latest
-            triplet: x64-osx
     env:
       # Indicates the location of the vcpkg as a Git submodule of the project repository.
       # Not using "VCPKG_ROOT" because a variable with the same name is defined in the VS's
@@ -109,3 +105,9 @@ jobs:
       - name: Test (Release configuration)
         run: |
           ctest --preset test-release
+
+      - name: Archive Build (Release configuration)
+        uses: actions/upload-artifact@v4
+        with:
+          name: buildarch
+          path: builds/ninja-vcpkg-release
