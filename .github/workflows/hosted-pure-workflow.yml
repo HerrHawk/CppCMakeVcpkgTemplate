@@ -110,4 +110,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: buildarch
-          path: builds/ninja-multi-vcpkg
+          path: ${{ github.workspace }}/builds/ninja-multi-vcpkg/Release
